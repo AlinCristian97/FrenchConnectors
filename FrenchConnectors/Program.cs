@@ -211,10 +211,15 @@ internal class Program
         {
             Exercise? ex = randomizedExercises[j];
 
+            int currentExerciseCount = j + 1;
+            Console.ForegroundColor = ConsoleColor.DarkGray;
+            Console.WriteLine($"\nEx {currentExerciseCount}");
+            Console.ResetColor();
+
             if (debug)
             {
                 Console.ForegroundColor = ConsoleColor.Cyan;
-                Console.Write($"\n{ex.Text}");
+                Console.Write($"{ex.Text}");
                 Console.ResetColor();
                 Console.ForegroundColor = ConsoleColor.DarkGray;
                 int exerciseIndex = exercises.FindIndex(re => re.Text == ex.Text);
