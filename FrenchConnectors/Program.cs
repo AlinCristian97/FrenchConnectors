@@ -2,7 +2,7 @@
 
 internal class Program
 {
-    private static bool debug = false;
+    private static bool debug = true;
     
     static void Main()
     {
@@ -157,9 +157,25 @@ internal class Program
     
     static void RunExercises(List<Exercise> exercises)
     {
-        foreach (var ex in exercises.OrderBy(_ => Guid.NewGuid())) // random order
+        var randomizedExercises = exercises.OrderBy(_ => Guid.NewGuid()).ToList();
+
+        for (int j = 0; j < randomizedExercises.Count; j++)
         {
-            Console.WriteLine($"\n{ex.Text}");
+            Exercise? ex = randomizedExercises[j];
+
+            if (debug)
+            {
+                Console.Write($"\n{ex.Text}");
+                Console.ForegroundColor = ConsoleColor.DarkGray;
+                int exerciseIndex = exercises.FindIndex(re => re.Text == ex.Text);
+                Console.WriteLine($" ({exerciseIndex + 1}/{randomizedExercises.Count})");
+                Console.ResetColor();
+            }
+            else
+            {
+                Console.WriteLine($"\n{ex.Text}");
+            }
+
             for (int i = 0; i < ex.Options.Length; i++)
             {
                 Console.WriteLine($"{i + 1}. {ex.Options[i]}");
