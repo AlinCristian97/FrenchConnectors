@@ -1,4 +1,5 @@
 ﻿using FrenchConnectors;
+using System.Drawing;
 
 internal class Program
 {
@@ -183,7 +184,7 @@ internal class Program
             for (int i = 0; i < ex.Options.Length; i++)
             {
                 Console.ForegroundColor = ConsoleColor.DarkYellow;
-                Console.WriteLine($"{i + 1}. {ex.Options[i]}");
+                Console.WriteLine($"{i + 1}. {ex.Options[i].Name}");
                 Console.ResetColor();
             }
 
@@ -194,7 +195,7 @@ internal class Program
 
             if (int.TryParse(answer, out int idx) && idx >= 1 && idx <= Constants.TotalNumberOfOptions)
             {
-                if (ex.Options[idx - 1] == ex.CorrectOption)
+                if (ex.Options[idx - 1].Name == ex.CorrectOption.Name)
                 {
                     Console.ForegroundColor = ConsoleColor.Green;
                     Console.WriteLine("Correct !");
@@ -202,12 +203,23 @@ internal class Program
                 else
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine($"Faux ! Réponse correcte : {ex.CorrectOption}");
+                    Console.WriteLine($"Faux ! Réponse correcte : {ex.CorrectOption.Name}");
                 }
                 Console.ResetColor();
                 Console.ForegroundColor = ConsoleColor.Magenta;
                 Console.WriteLine($"Explication : {ex.Explanation}");
                 Console.ResetColor();
+                foreach (var wrongOption in ex.Options)
+                {
+                    if (wrongOption.Name == ex.CorrectOption.Name)
+                    {
+                        continue;
+                    }
+
+                    Console.ForegroundColor = ConsoleColor.DarkGray;
+                    Console.WriteLine(wrongOption.Explanation);
+                    Console.ResetColor();
+                }
             }
             else
             {

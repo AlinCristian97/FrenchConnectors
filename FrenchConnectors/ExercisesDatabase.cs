@@ -18,27 +18,26 @@ public class ExercisesDatabase
             return new List<Exercise>();
         }
 
-        return LoadExercisesFromJson(filePath, connector.Name);
+        return LoadExercisesFromJson(filePath, connector);
     }
 
-    private static List<Exercise> LoadExercisesFromJson(string filePath, string correctConnector)
+    private static List<Exercise> LoadExercisesFromJson(string filePath, Connector correctConnector)
     {
         var sentences = JsonSerializer.Deserialize<string[]>(File.ReadAllText(filePath))!;
 
-        var connector = Connectors.All.First(c => c.Name == correctConnector);
+        var connector = Connectors.All.First(c => c.Name == correctConnector.Name);
 
         var exercises = new List<Exercise>();
 
         foreach (var sentence in sentences)
         {
-            var distractors = Connectors.All
-                .Where(c => c.Name != correctConnector)
+            Connector[] distractors = Connectors.All
+                .Where(c => c.Name != correctConnector.Name)
                 .OrderBy(_ => Guid.NewGuid())
                 .Take(Constants.TotalNumberOfOptions - 1)
-                .Select(c => c.Name)
                 .ToArray();
 
-            var options = distractors
+            Connector[] options = distractors
                 .Append(correctConnector)
                 .OrderBy(_ => Guid.NewGuid())
                 .ToArray();
