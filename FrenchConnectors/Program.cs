@@ -1,4 +1,5 @@
 ﻿using FrenchConnectors;
+using System.Diagnostics;
 using System.Drawing;
 
 internal class Program
@@ -235,15 +236,18 @@ internal class Program
             }
 
             Console.Write($"Votre réponse (1-{Constants.TotalNumberOfOptions}, Q pour quitter) : ");
-            var answer = Console.ReadLine()?.Trim().ToUpper();
+            var (quitRequested, idx) = ReadAnswerForExercise(ex);
 
-            if (answer == "Q") break;
+            if (quitRequested)
+            {
+                break;
+            }
 
             totalExercisesResolved++;
 
-            if (int.TryParse(answer, out int idx) && idx >= 1 && idx <= Constants.TotalNumberOfOptions)
+            if (idx.HasValue && idx >= 1 && idx <= Constants.TotalNumberOfOptions)
             {
-                bool isCorrect = ex.Options[idx - 1].Name == ex.CorrectOption.Name;
+                bool isCorrect = ex.Options[idx.Value - 1].Name == ex.CorrectOption.Name;
                 if (isCorrect)
                 {
                     totalCorrect++;
@@ -327,6 +331,79 @@ internal class Program
         Console.ResetColor();
 
         Console.WriteLine(Constants.LineSeparator);
+    }
+
+    // Reads a single key repeatedly until a valid numeric answer is provided or user quits.
+    // Pressing 'C' copies the exercise text immediately (no Enter required) and continues waiting for an answer.
+    // Returns (quitRequested, selectedIndex). If quitRequested is true, selectedIndex is null.
+    private static (bool QuitRequested, int? SelectedIndex) ReadAnswerForExercise(Exercise ex)
+    {
+        while (true)
+        {
+            var keyInfo = Console.ReadKey(true);
+
+            // Copy to clipboard silently on 'C'
+            if (keyInfo.Key == ConsoleKey.C)
+            {
+                try
+                {
+                    CopyTextToClipboard(ex.Text);
+                }
+                catch
+                {
+                    // keep silent on copy failure
+                }
+                continue;
+            }
+
+            // Quit on 'Q'
+            if (keyInfo.Key == ConsoleKey.Q)
+            {
+                return (true, null);
+            }
+
+            // Determine numeric input (supports digits and numpad)
+            int idx = -1;
+            var keyChar = keyInfo.KeyChar;
+            if (char.IsDigit(keyChar))
+            {
+                idx = (int)char.GetNumericValue(keyChar);
+            }
+            else
+            {
+                if (keyInfo.Key >= ConsoleKey.D0 && keyInfo.Key <= ConsoleKey.D9)
+                    idx = keyInfo.Key - ConsoleKey.D0;
+                else if (keyInfo.Key >= ConsoleKey.NumPad0 && keyInfo.Key <= ConsoleKey.NumPad9)
+                    idx = keyInfo.Key - ConsoleKey.NumPad0;
+            }
+
+            if (idx >= 1 && idx <= Constants.TotalNumberOfOptions)
+            {
+                return (false, idx);
+            }
+
+            // invalid key, give minimal feedback
+            Console.WriteLine("Invalid input.");
+        }
+    }
+
+
+    private static void CopyTextToClipboard(string text)
+    {
+        var psi = new ProcessStartInfo("cmd", "/c clip")
+        {
+            RedirectStandardInput = true,
+            UseShellExecute = false,
+            CreateNoWindow = true
+        };
+
+        using var p = Process.Start(psi);
+        if (p != null)
+        {
+            p.StandardInput.Write(text);
+            p.StandardInput.Close();
+            p.WaitForExit();
+        }
     }
     
     #endregion
