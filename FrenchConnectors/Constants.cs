@@ -92,4 +92,5 @@ public static class Constants
     }
 
     public const string LineSeparator = "----------------------------------------";
+    public const string SentenceConnectorHideSymbol = "___";
 }

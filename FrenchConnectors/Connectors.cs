@@ -7,7 +7,7 @@ public static class Connectors
         // Coordination
         new() { Name = Constants.ConnectorNames.Et, Type = Constants.ConnectorTypes.Coordination, Explanation = "'et' exprime l'addition.", JsonFileName = nameof(Constants.ConnectorNames.Et), Notes = "Très courant, utilisé tous les jours pour additionner." },
         new() { Name = Constants.ConnectorNames.Ou, Type = Constants.ConnectorTypes.Coordination, Explanation = "'ou' exprime l'alternative.", JsonFileName = nameof(Constants.ConnectorNames.Ou), Notes = "Très courant, introduit un choix." },
-        new() { Name = Constants.ConnectorNames.NiNi, Type = Constants.ConnectorTypes.Coordination, Explanation = "'ni… ni' exprime la négation combinée.", JsonFileName = nameof(Constants.ConnectorNames.NiNi), Notes = "Moins courant, plutôt littéraire." },
+        new() { Name = Constants.ConnectorNames.NiNi, Type = Constants.ConnectorTypes.Coordination, Explanation = "'ni... ni' exprime la négation combinée.", JsonFileName = nameof(Constants.ConnectorNames.NiNi), Notes = "Moins courant, plutôt littéraire." },
         new() { Name = Constants.ConnectorNames.Mais, Type = Constants.ConnectorTypes.Coordination, Explanation = "'mais' exprime l'opposition.", JsonFileName = nameof(Constants.ConnectorNames.Mais), Notes = "Très courant, contraste simple." },
         new() { Name = Constants.ConnectorNames.Donc, Type = Constants.ConnectorTypes.Coordination, Explanation = "'donc' exprime la conséquence.", JsonFileName = nameof(Constants.ConnectorNames.Donc), Notes = "Très courant, exprime la conclusion." },
         new() { Name = Constants.ConnectorNames.Alors, Type = Constants.ConnectorTypes.Coordination, Explanation = "'alors' exprime la conséquence.", JsonFileName = nameof(Constants.ConnectorNames.Alors), Notes = "Courant, parfois pour introduire un moment temporel." },
@@ -41,7 +41,7 @@ public static class Connectors
         new() { Name = Constants.ConnectorNames.DePlus, Type = Constants.ConnectorTypes.Addition, Explanation = "'de plus' exprime l'addition.", JsonFileName = nameof(Constants.ConnectorNames.DePlus), Notes = "Courant, souvent écrit." },
         new() { Name = Constants.ConnectorNames.EnOutre, Type = Constants.ConnectorTypes.Addition, Explanation = "'en outre' exprime l'addition.", JsonFileName = nameof(Constants.ConnectorNames.EnOutre), Notes = "Formel, écrit." },
         new() { Name = Constants.ConnectorNames.Dailleurs, Type = Constants.ConnectorTypes.Addition, Explanation = "'d’ailleurs' exprime l'addition.", JsonFileName = nameof(Constants.ConnectorNames.Dailleurs), Notes = "Courant, oral et écrit." },
-        new() { Name = Constants.ConnectorNames.NonSeulementMaisAussi, Type = Constants.ConnectorTypes.Addition, Explanation = "'non seulement… mais aussi' exprime l'addition.", JsonFileName = nameof(Constants.ConnectorNames.NonSeulementMaisAussi), Notes = "Formel, un peu littéraire." },
+        new() { Name = Constants.ConnectorNames.NonSeulementMaisAussi, Type = Constants.ConnectorTypes.Addition, Explanation = "'non seulement... mais aussi' exprime l'addition.", JsonFileName = nameof(Constants.ConnectorNames.NonSeulementMaisAussi), Notes = "Formel, un peu littéraire." },
 
         // Time / Sequence
         new() { Name = Constants.ConnectorNames.Puis, Type = Constants.ConnectorTypes.Time, Explanation = "'puis' exprime la succession dans le temps.", JsonFileName = nameof(Constants.ConnectorNames.Puis), Notes = "Courant, oral et écrit." },

@@ -121,7 +121,46 @@ internal class Program
         Console.WriteLine(connector.Notes);
         Console.ResetColor();
 
+        PrintSentencesForConnector(connector);
+
         Console.WriteLine(Constants.LineSeparator);
+    }
+
+    private static void PrintSentencesForConnector(Connector connector)
+    {
+        if (connector.Name.Contains("..."))
+        {
+            return;
+        }
+
+        var examples = ExercisesDatabase.GetExercisesForConnector(connector);
+        if (examples.Count == 0)
+        {
+            // no examples available
+            if (debug)
+            {
+                Console.ForegroundColor = ConsoleColor.DarkGray;
+                Console.WriteLine("(No example sentences found in JSON.)");
+                Console.ResetColor();
+            }
+        }
+        else
+        {
+            var sampleCount = Math.Min(3, examples.Count);
+            var samples = examples
+                .OrderBy(_ => Guid.NewGuid())
+                .Take(sampleCount)
+                .Select(e => e.Text)
+                .ToList();
+
+            Console.ForegroundColor = ConsoleColor.DarkGray;
+            foreach (var s in samples)
+            {
+                string formattedSample = s.Replace(Constants.SentenceConnectorHideSymbol, connector.Name);
+                Console.WriteLine(formattedSample);
+            }
+            Console.ResetColor();
+        }
     }
 
     static List<Exercise> GetAllConnectorsExercises()
