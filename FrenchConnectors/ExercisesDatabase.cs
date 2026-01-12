@@ -38,7 +38,8 @@ public class ExercisesDatabase
                 .Select(c => c.Name)
                 .ToArray();
 
-            var options = new[] { correctConnector, distractors[0], distractors[1] }
+            var options = distractors
+                .Append(correctConnector)
                 .OrderBy(_ => Guid.NewGuid())
                 .ToArray();
 

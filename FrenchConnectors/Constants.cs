@@ -2,7 +2,7 @@
 
 public static class Constants
 {
-    public const int TotalNumberOfOptions = 5;
+    public const int TotalNumberOfOptions = 4;
     
     public static class ConnectorTypes
     {

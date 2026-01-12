@@ -165,12 +165,12 @@ internal class Program
                 Console.WriteLine($"{i + 1}. {ex.Options[i]}");
             }
 
-            Console.Write("Votre réponse (1-3, Q pour quitter) : ");
+            Console.Write($"Votre réponse (1-{Constants.TotalNumberOfOptions}, Q pour quitter) : ");
             var answer = Console.ReadLine()?.Trim().ToUpper();
 
             if (answer == "Q") break;
 
-            if (int.TryParse(answer, out int idx) && idx >= 1 && idx <= 3)
+            if (int.TryParse(answer, out int idx) && idx >= 1 && idx <= Constants.TotalNumberOfOptions)
             {
                 if (ex.Options[idx - 1] == ex.CorrectOption)
                 {
