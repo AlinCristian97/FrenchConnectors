@@ -199,9 +199,17 @@ internal class Program
     {
         var randomizedExercises = exercises.OrderBy(_ => Guid.NewGuid()).ToList();
 
+        int totalExercisesResolved = 0;
+        int totalCorrect = 0;
+        int totalWrong = 0;
+        int currentStreak = 0;
+        int maxStreak = 0;
+        const int MinForStreak = 3;
+
         for (int j = 0; j < randomizedExercises.Count; j++)
         {
             Exercise? ex = randomizedExercises[j];
+            Console.WriteLine(ex.CorrectOption.Name);
 
             if (debug)
             {
@@ -232,17 +240,46 @@ internal class Program
 
             if (answer == "Q") break;
 
+            totalExercisesResolved++;
+
             if (int.TryParse(answer, out int idx) && idx >= 1 && idx <= Constants.TotalNumberOfOptions)
             {
-                if (ex.Options[idx - 1].Name == ex.CorrectOption.Name)
+                bool isCorrect = ex.Options[idx - 1].Name == ex.CorrectOption.Name;
+                if (isCorrect)
                 {
+                    totalCorrect++;
+                    currentStreak++;
+                    if (currentStreak >= MinForStreak && currentStreak > maxStreak)
+                    {
+                        maxStreak = currentStreak;
+                    }
+
                     Console.ForegroundColor = ConsoleColor.Green;
-                    Console.WriteLine("Correct !");
+                    if (currentStreak >= MinForStreak)
+                    {
+                        Console.WriteLine($"Correct ! (Streak: {currentStreak} ^_^)");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Correct !");
+                    }
                 }
                 else
                 {
+                    totalWrong++;
+
                     Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine($"Faux ! Réponse correcte : {ex.CorrectOption.Name}");
+
+                    if (currentStreak >= MinForStreak)
+                    {
+                        Console.WriteLine($"Faux ! Streak of {currentStreak} ended -_- ! Réponse correcte : {ex.CorrectOption.Name}");
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Faux ! Réponse correcte : {ex.CorrectOption.Name}");
+                    }
+
+                    currentStreak = 0;
                 }
                 Console.ResetColor();
                 Console.ForegroundColor = ConsoleColor.Magenta;
@@ -265,6 +302,32 @@ internal class Program
                 Console.WriteLine("Invalid input.");
             }
         }
+
+        // Session ended — show summary
+        Console.WriteLine();
+        Console.WriteLine(Constants.LineSeparator);
+
+        Console.ForegroundColor = ConsoleColor.Yellow;
+        Console.WriteLine("*** Game Ended ***");
+        Console.ResetColor();
+
+        Console.ForegroundColor = ConsoleColor.White;
+        Console.WriteLine($"Total Exercises Resolved: {totalExercisesResolved}");
+        Console.ResetColor();
+
+        Console.ForegroundColor = ConsoleColor.Green;
+        Console.WriteLine($"Total Correct Answers: {totalCorrect}");
+        Console.ResetColor();
+
+        Console.ForegroundColor = ConsoleColor.Red;
+        Console.WriteLine($"Total Wrong Answers: {totalWrong}");
+        Console.ResetColor();
+
+        Console.ForegroundColor = ConsoleColor.Cyan;
+        Console.WriteLine($"Best Correct Streak: {maxStreak}");
+        Console.ResetColor();
+
+        Console.WriteLine(Constants.LineSeparator);
     }
     
     #endregion
