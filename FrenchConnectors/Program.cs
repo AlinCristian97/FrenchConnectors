@@ -209,7 +209,6 @@ internal class Program
         for (int j = 0; j < randomizedExercises.Count; j++)
         {
             Exercise? ex = randomizedExercises[j];
-            Console.WriteLine(ex.CorrectOption.Name);
 
             if (debug)
             {
