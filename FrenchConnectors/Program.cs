@@ -165,7 +165,9 @@ internal class Program
 
             if (debug)
             {
+                Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.Write($"\n{ex.Text}");
+                Console.ResetColor();
                 Console.ForegroundColor = ConsoleColor.DarkGray;
                 int exerciseIndex = exercises.FindIndex(re => re.Text == ex.Text);
                 Console.WriteLine($" ({exerciseIndex + 1}/{randomizedExercises.Count})");
@@ -173,12 +175,16 @@ internal class Program
             }
             else
             {
+                Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.WriteLine($"\n{ex.Text}");
+                Console.ResetColor();
             }
 
             for (int i = 0; i < ex.Options.Length; i++)
             {
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
                 Console.WriteLine($"{i + 1}. {ex.Options[i]}");
+                Console.ResetColor();
             }
 
             Console.Write($"Votre réponse (1-{Constants.TotalNumberOfOptions}, Q pour quitter) : ");
@@ -199,7 +205,9 @@ internal class Program
                     Console.WriteLine($"Faux ! Réponse correcte : {ex.CorrectOption}");
                 }
                 Console.ResetColor();
+                Console.ForegroundColor = ConsoleColor.Magenta;
                 Console.WriteLine($"Explication : {ex.Explanation}");
+                Console.ResetColor();
             }
             else
             {
