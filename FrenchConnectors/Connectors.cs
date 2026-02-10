@@ -51,6 +51,7 @@ public static class Connectors
         new() { Name = Constants.ConnectorNames.Dabord, Type = Constants.ConnectorTypes.Time, Explanation = "'d’abord' exprime la première action.", JsonFileName = nameof(Constants.ConnectorNames.Dabord), Notes = "Très courant, oral et écrit." },
         new() { Name = Constants.ConnectorNames.Finalement, Type = Constants.ConnectorTypes.Time, Explanation = "'finalement' exprime la conclusion temporelle.", JsonFileName = nameof(Constants.ConnectorNames.Finalement), Notes = "Courant, souvent à l’écrit." },
         new() { Name = Constants.ConnectorNames.TandisQue, Type = Constants.ConnectorTypes.Time, Explanation = "'tandis que' exprime la simultanéité ou l'opposition.", JsonFileName = nameof(Constants.ConnectorNames.TandisQue), Notes = "Courant, oral et écrit, exprime simultanéité ou contraste." },
+        new() { Name = Constants.ConnectorNames.Lorsque, Type = Constants.ConnectorTypes.Time, Explanation = "'lorsque' exprime le moment où une action se produit, équivalent à 'quand' en français.", JsonFileName = nameof(Constants.ConnectorNames.Lorsque), Notes = "Courant, écrit et parlé, utilisé pour indiquer le moment précis d'une action ou d'un événement." },
 
         // Condition
         new() { Name = Constants.ConnectorNames.Si, Type = Constants.ConnectorTypes.Condition, Explanation = "'si' exprime la condition.", JsonFileName = nameof(Constants.ConnectorNames.Si), Notes = "Très courant, oral et écrit." },

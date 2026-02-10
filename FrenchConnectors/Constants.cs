@@ -67,6 +67,7 @@ public static class Constants
         public const string Dabord = "d’abord";
         public const string Finalement = "finalement";
         public const string TandisQue = "tandis que";
+        public const string Lorsque = "lorsque";
 
         // Condition
         public const string Si = "si";
