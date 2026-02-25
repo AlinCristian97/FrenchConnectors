@@ -74,6 +74,7 @@ public static class Connectors
         new() { Name = Constants.ConnectorNames.AinsiQue, Type = Constants.ConnectorTypes.Comparison, Explanation = "'ainsi que' exprime la comparaison.", JsonFileName = nameof(Constants.ConnectorNames.AinsiQue), Notes = "Courant, écrit et oral." },
         new() { Name = Constants.ConnectorNames.DeMemeQue, Type = Constants.ConnectorTypes.Comparison, Explanation = "'de même que' exprime la comparaison.", JsonFileName = nameof(Constants.ConnectorNames.DeMemeQue), Notes = "Formel, surtout écrit." },
         new() { Name = Constants.ConnectorNames.AutantQue, Type = Constants.ConnectorTypes.Comparison, Explanation = "'autant que' exprime la comparaison.", JsonFileName = nameof(Constants.ConnectorNames.AutantQue), Notes = "Courant, utilisé pour comparer des quantités ou qualités." },
+        new() { Name = Constants.ConnectorNames.CommeSi, Type = Constants.ConnectorTypes.Comparison, Explanation = "'comme si' est une conjonction qui introduit une proposition subordonnée hypothétique ou comparative, exprimant une situation irréelle ou imaginaire.", JsonFileName = nameof(Constants.ConnectorNames.CommeSi), Notes = "Fixe et invariable ; suivi généralement de l'imparfait pour des situations présentes/fictives ou du plus-que-parfait pour des situations passées irréelles. Courant à l'écrit et à l'oral." },
 
     }.AsReadOnly();
 }

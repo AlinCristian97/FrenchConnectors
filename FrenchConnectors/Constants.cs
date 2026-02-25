@@ -90,6 +90,7 @@ public static class Constants
         public const string AinsiQue = "ainsi que";
         public const string DeMemeQue = "de même que";
         public const string AutantQue = "autant que";
+        public const string CommeSi = "comme si";
     }
 
     public const string LineSeparator = "----------------------------------------";
