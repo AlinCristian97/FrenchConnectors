@@ -77,4 +77,15 @@ public static class Connectors
         new() { Name = Constants.ConnectorNames.CommeSi, Type = Constants.ConnectorTypes.Comparison, Explanation = "'comme si' est une conjonction qui introduit une proposition subordonnée hypothétique ou comparative, exprimant une situation irréelle ou imaginaire.", JsonFileName = nameof(Constants.ConnectorNames.CommeSi), Notes = "Fixe et invariable ; suivi généralement de l'imparfait pour des situations présentes/fictives ou du plus-que-parfait pour des situations passées irréelles. Courant à l'écrit et à l'oral." },
 
     }.AsReadOnly();
+
+    public static readonly IReadOnlyList<Connector> MostPopular = new List<Connector>()
+    {
+        All.First(c => c.Name == Constants.ConnectorNames.Et),
+        All.First(c => c.Name == Constants.ConnectorNames.Ou),
+        All.First(c => c.Name == Constants.ConnectorNames.Mais),
+        All.First(c => c.Name == Constants.ConnectorNames.ParceQue),
+        All.First(c => c.Name == Constants.ConnectorNames.Pourtant),
+        All.First(c => c.Name == Constants.ConnectorNames.EnRevanche),
+        All.First(c => c.Name == Constants.ConnectorNames.ParConsequent),
+    };
 }

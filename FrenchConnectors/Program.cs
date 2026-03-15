@@ -14,6 +14,7 @@ internal class Program
             Console.WriteLine("\nChoisissez une option :");
             Console.WriteLine("S - Commencer le jeu");
             Console.WriteLine("D - Lister tous les connecteurs");
+            Console.WriteLine("E - Lister les connecteurs populaires");
             Console.WriteLine("F - Lister les connecteurs par type");
             Console.WriteLine("Q - Quitter");
 
@@ -39,6 +40,10 @@ internal class Program
                     ListAllConnectors();
                     break;
 
+                case "E":
+                    ListPopularConnectors();
+                    break;
+
                 case "F":
                     ListConnectorsByUserType();
                     break;
@@ -47,6 +52,15 @@ internal class Program
                     Console.WriteLine("Option invalide, veuillez réessayer.");
                     break;
             }
+        }
+    }
+
+    static void ListPopularConnectors()
+    {
+        Console.WriteLine("\nListe des connecteurs populaires :\n");
+        foreach (var connector in Connectors.MostPopular)
+        {
+            PrintConnector(connector, true);
         }
     }
 
